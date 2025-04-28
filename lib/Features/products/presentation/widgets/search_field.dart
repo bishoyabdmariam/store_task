@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_task/Core/extensions/extensions.dart';
 
 class SearchField extends StatelessWidget {
   final ValueChanged<String> onChanged;
@@ -10,8 +11,11 @@ class SearchField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextField(
+        onTapOutside: (_) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
         decoration: InputDecoration(
-          hintText: 'Search products...',
+          hintText: 'Search products...'.translate(context),
           prefixIcon: const Icon(Icons.search),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),

@@ -1,4 +1,3 @@
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../Core/utils/app_strings.dart';
@@ -23,5 +22,5 @@ class LangLocalDataSourceImpl implements LangLocalDataSource {
   Future<String?> getSavedLang() async =>
       sharedPreferences.containsKey(AppStrings.locale)
           ? sharedPreferences.getString(AppStrings.locale)
-          : AppStrings.englishCode;
+          : AppStrings.arabicCode;
 }

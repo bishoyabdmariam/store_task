@@ -26,24 +26,30 @@ class MyApp extends StatelessWidget {
               return previousState != currentState;
             },
             builder: (context, localState) {
-              return MaterialApp(
-                locale: di.sl<LocaleCubit>().locale,
-                debugShowCheckedModeBanner: false,
-                themeAnimationStyle: AnimationStyle(
-                    duration: const Duration(
-                      milliseconds: 250,
-                    ),
-                    curve: Curves.easeInOut),
-                title: AppStrings.appName,
-                theme: AppThemeStyle.lightTheme,
-                initialRoute: Routes.initialOnboardRoute,
-                onGenerateRoute: AppRoutes.onGenerateRoute,
-                supportedLocales: AppLocalizationsSetup.supportedLocales,
-                localeResolutionCallback:
-                    AppLocalizationsSetup.localeResolutionCallback,
-                localizationsDelegates:
-                    AppLocalizationsSetup.localizationsDelegates,
-              );
+              if (localState is ChangeLocaleState) {
+                print(localState.locale);
+                print("localState.locale");
+
+                return MaterialApp(
+                  locale: localState.locale,
+                  debugShowCheckedModeBanner: false,
+                  themeAnimationStyle: AnimationStyle(
+                      duration: const Duration(
+                        milliseconds: 250,
+                      ),
+                      curve: Curves.easeInOut),
+                  title: AppStrings.appName,
+                  theme: AppThemeStyle.lightTheme,
+                  initialRoute: Routes.initialOnboardRoute,
+                  onGenerateRoute: AppRoutes.onGenerateRoute,
+                  supportedLocales: AppLocalizationsSetup.supportedLocales,
+                  localeResolutionCallback:
+                      AppLocalizationsSetup.localeResolutionCallback,
+                  localizationsDelegates:
+                      AppLocalizationsSetup.localizationsDelegates,
+                );
+              }
+              return Container();
             },
           ),
         );

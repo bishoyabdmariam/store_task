@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:store_task/Config/routes/app_routes.dart';
 import 'package:store_task/Config/routes/routes.dart';
+import 'package:store_task/Core/extensions/extensions.dart';
 import 'package:store_task/Core/utils/app_strings.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -44,7 +44,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                         const SizedBox(height: 32),
                         Text(
-                          page.title,
+                          page.title.translate(context),
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall
@@ -55,7 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          page.description,
+                          page.description.translate(context),
                           style: Theme.of(context).textTheme.bodyLarge,
                           textAlign: TextAlign.center,
                         ),
@@ -94,15 +94,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
                 child: Text(
                   _currentPage == OnboardingData.pages.length - 1
-                      ? 'Get Started'
-                      : 'Next',
+                      ? 'Get Started'.translate(context)
+                      : 'Next'.translate(context),
                 ),
               ),
               TextButton(
                 onPressed: () async {
                   Navigator.of(context).pushReplacementNamed(Routes.homeScreen);
                 },
-                child: const Text('Skip'),
+                child: Text('Skip'.translate(context)),
               ),
             ]),
             const SizedBox(height: 16),

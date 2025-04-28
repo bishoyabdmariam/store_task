@@ -13,29 +13,20 @@ class LocaleCubit extends Cubit<LocaleState> {
     required this.langLocalDataSource,
   }) : super(const LocaleStateLoading());
 
-  String currentLangCode = AppStrings.arabicCode;
-  Locale locale = const Locale(AppStrings.arabicCode);
-
   Future<void> getSavedLang() async {
     emit(const LocaleStateLoading());
     String? storedLocale = await langLocalDataSource.getSavedLang();
     if (storedLocale == null) {
-      currentLangCode = AppStrings.arabicCode;
-      langLocalDataSource.changeLang(langCode: currentLangCode);
-      locale = const Locale(AppStrings.arabicCode);
+      langLocalDataSource.changeLang(langCode: AppStrings.arabicCode);
       emit(const ChangeLocaleState(locale: Locale(AppStrings.arabicCode)));
       return;
     }
-    currentLangCode = storedLocale;
-    locale = Locale(storedLocale);
-    emit(ChangeLocaleState(locale: Locale(currentLangCode)));
+    emit(ChangeLocaleState(locale: Locale(storedLocale)));
   }
 
   Future<void> changeLang(String langCode) async {
     emit(const LocaleStateLoading());
-    locale = Locale(langCode);
     await langLocalDataSource.changeLang(langCode: langCode);
-    currentLangCode = langCode;
     emit(ChangeLocaleState(locale: Locale(langCode)));
   }
 

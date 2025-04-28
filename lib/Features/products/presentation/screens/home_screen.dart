@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_task/Core/extensions/extensions.dart';
 import 'package:store_task/Features/products/data/model/product.dart';
 import 'package:store_task/Features/products/presentation/cubit/product_cubit';
 import '../cubit/product_state.dart';
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Products'),
+        title: Text('Products'.translate(context)),
       ),
       body: Column(
         children: [
@@ -77,7 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   );
                 }
-                return const Center(child: Text('No products available'));
+                return Center(
+                    child: Text('No products found'.translate(context)));
               },
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_task/Core/extensions/extensions.dart';
 import 'package:store_task/Features/products/data/model/product.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class ProductDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product Details'),
+        title: Text('Product Details'.translate(context)),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -49,14 +50,14 @@ class ProductDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'Category: ${product.category}',
+              '${"Category".translate(context)}: ${product.category}',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontStyle: FontStyle.italic,
                   ),
             ),
             const SizedBox(height: 16),
             Text(
-              'Description:',
+              '${"Description".translate(context)}:',
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 8),

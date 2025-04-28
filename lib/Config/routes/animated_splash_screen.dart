@@ -1,10 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:store_task/Config/routes/routes.dart';
-import 'package:store_task/Core/extensions/extensions.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 class AnimatedSplashScreen extends StatefulWidget {
@@ -27,8 +26,6 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen> {
       });
     });
     quickActions.setShortcutItems(<ShortcutItem>[
-      // NOTE: This first action icon will only work on iOS.
-      // In a real world project keep the same file name for both platforms.
       const ShortcutItem(
         type: 'action_one',
         localizedTitle: 'Please don\'t delete me ☹️',
@@ -48,30 +45,36 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
+      body: Directionality(
+        // Wrap with Directionality for RTL support
+        textDirection: TextDirection.ltr, // Set to RTL for Arabic
+        child: Center(
           child: TextAnimator(
-        'Store Task'.translate(context),
-        style: const TextStyle(
-          fontSize: 70,
-          fontWeight: FontWeight.w700,
-        ),
-      )
+            'Store Task', // Arabic text for "Store Task"
+            style: TextStyle(
+              fontSize: 70.sp,
+              fontWeight: FontWeight.w700,
+            ),
+            textAlign: TextAlign.right, // Right align for Arabic
+          )
               .animate()
               .scale(
-                  begin: const Offset(1.0, 1.0),
-                  end: const Offset(0.8, 0.8),
-                  duration: 300.ms,
-                  curve: Curves.elasticIn,
-                  transformHitTests: true) // Scale down
+                begin: const Offset(1.0, 1.0),
+                end: const Offset(0.8, 0.8),
+                duration: 300.ms,
+                curve: Curves.elasticIn,
+                transformHitTests: true,
+              )
               .then()
               .scale(
-                  begin: const Offset(0.5, 0.5),
-                  end: const Offset(1.0, 1.0),
-                  duration: 300.ms,
-                  curve: Curves.elasticIn,
-                  transformHitTests: true) // Scale back up
-          // .show(), // Repeat the animation
-          ),
+                begin: const Offset(0.5, 0.5),
+                end: const Offset(1.0, 1.0),
+                duration: 300.ms,
+                curve: Curves.elasticIn,
+                transformHitTests: true,
+              ),
+        ),
+      ),
     );
   }
 }
