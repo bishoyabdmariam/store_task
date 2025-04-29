@@ -1,16 +1,43 @@
-# store_task
+# 🛍️ Flutter Store App
 
-A new Flutter project.
+A clean and modern Flutter store application that showcases product listings using the [Fake Store API](https://fakestoreapi.com/). This app includes multi-language support, onboarding for first-time users, and a detailed product view.
 
-## Getting Started
+## ✨ Features
 
-This project is a starting point for a Flutter application.
+- 🌐 **Multi-language support (2 languages)**  
+  Easily switch between two languages from the home screen.
 
-A few resources to get you started if this is your first Flutter project:
+- 👋 **One-time Onboarding**  
+  A simple and smooth onboarding experience shown only on the first launch.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 🛒 **Product Listing from Fake Store API**  
+  Products are fetched dynamically and displayed in a responsive `GridView`.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 📄 **Product Detail Screen**  
+  Tapping on a product takes you to a dedicated screen with detailed information.
+
+---
+
+## 🧰 Tech Stack
+
+- **Flutter** 🐦
+- **Dart** 💙
+- **Bloc** for state management
+- **Sqlite** for storing onboarding status
+- **Dio** for network requests
+- **Localization** with `flutter_localizations`
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Flutter SDK
+- Android Studio or VS Code
+
+### Installation
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/bishoyabdmariam/store_task.git
