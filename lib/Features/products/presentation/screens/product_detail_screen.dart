@@ -47,7 +47,7 @@ class ProductDetailScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             Row(
               children: [
                 const Icon(Icons.star, color: Colors.amber),
@@ -58,7 +58,7 @@ class ProductDetailScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
             Text(
               '${"Category".translate(context)}: ${product.category}',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -66,14 +66,14 @@ class ProductDetailScreen extends StatelessWidget {
                     color: Colors.grey[600],
                   ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Text(
               '${"Description".translate(context)}:',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Text(
               product.description,
               style: Theme.of(context).textTheme.bodyLarge,
