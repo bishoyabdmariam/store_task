@@ -1,6 +1,9 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:store_task/Features/products/data/model/product.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'package:http/http.dart' as http;
 
 class ProductsLocalDataSource {
   static Database? _database;
@@ -36,14 +39,34 @@ class ProductsLocalDataSource {
   Future<void> insertProducts(List<ProductModel> products) async {
     final db = await database;
     final batch = db.batch();
+    final directory = await getApplicationDocumentsDirectory();
+
     for (final product in products) {
-      batch.insert(
-        'products',
-        product.toJson(),
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      // Download image
+      final response = await http.get(Uri.parse(product.image));
+      if (response.statusCode == 200) {
+        final imageFile = File('${directory.path}/${product.id}.png');
+        await imageFile.writeAsBytes(response.bodyBytes);
+        final localImagePath = imageFile.path;
+
+        // Save product with local image path
+        final productWithLocalImage = product.copyWith(image: localImagePath);
+        batch.insert(
+          'products',
+          productWithLocalImage.toJson(),
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+      } else {
+        // If image fails to download, insert with original URL or handle as needed
+        batch.insert(
+          'products',
+          product.toJson(),
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+      }
     }
-    await batch.commit();
+
+    await batch.commit(noResult: true);
   }
 
   Future<List<ProductModel>> getProducts() async {

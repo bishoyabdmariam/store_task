@@ -1,15 +1,40 @@
+import 'dart:io';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_task/Core/extensions/extensions.dart';
 import 'package:store_task/Features/products/data/model/product.dart';
 
-class ProductDetailScreen extends StatelessWidget {
+class ProductDetailScreen extends StatefulWidget {
   final ProductModel product;
 
   const ProductDetailScreen({required this.product, super.key});
 
   @override
+  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
+}
+
+class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  bool hasInternet = true;
+
+  @override
+  void initState() {
+    super.initState();
+    checkConnectivity();
+  }
+
+  Future<void> checkConnectivity() async {
+    final connectivityResult = await Connectivity().checkConnectivity();
+    setState(() {
+      hasInternet = connectivityResult.contains(ConnectivityResult.wifi);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final product = widget.product;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Product Details'.translate(context)),
@@ -23,13 +48,19 @@ class ProductDetailScreen extends StatelessWidget {
             Center(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  product.image,
-                  height: 280.h,
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) =>
-                      const Icon(Icons.broken_image, size: 100),
-                ),
+                child: hasInternet
+                    ? Image.network(
+                        product.image,
+                        height: 280.h,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(Icons.broken_image, size: 100),
+                      )
+                    : Image.file(
+                        File(product.image),
+                        height: 280.h,
+                        fit: BoxFit.contain,
+                      ),
               ),
             ),
             SizedBox(height: 24.h),

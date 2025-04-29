@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_task/Features/products/data/model/product.dart';
@@ -33,8 +35,11 @@ class ProductCard extends StatelessWidget {
                     product.image,
                     height: 100.h,
                     fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) =>
-                        const Icon(Icons.broken_image, size: 40),
+                    errorBuilder: (context, error, stackTrace) => Image.file(
+                      File(product.image),
+                      height: 100.h,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),

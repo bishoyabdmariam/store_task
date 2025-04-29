@@ -44,4 +44,26 @@ class ProductModel {
       'rating_count': ratingCount,
     };
   }
+
+  ProductModel copyWith({
+    int? id,
+    String? title,
+    double? price,
+    String? description,
+    String? category,
+    String? image,
+    double? ratingRate,
+    int? ratingCount,
+  }) {
+    return ProductModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      price: price ?? this.price,
+      description: description ?? this.description,
+      category: category ?? this.category,
+      image: image ?? this.image,
+      ratingRate: ratingRate ?? this.ratingRate,
+      ratingCount: ratingCount ?? this.ratingCount,
+    );
+  }
 }
