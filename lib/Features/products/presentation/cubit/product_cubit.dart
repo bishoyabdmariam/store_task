@@ -1,7 +1,6 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_task/Features/products/domain/repository/products_repository.dart';
 import 'product_state.dart';
-
 
 class ProductCubit extends Cubit<ProductState> {
   final ProductRepository repository;

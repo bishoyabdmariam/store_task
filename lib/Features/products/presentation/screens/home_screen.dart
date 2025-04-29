@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_task/Core/extensions/extensions.dart';
 import 'package:store_task/Features/products/data/model/product.dart';
-import 'package:store_task/Features/products/presentation/cubit/product_cubit';
+import 'package:store_task/Features/products/presentation/cubit/product_cubit.dart';
 import '../../../settings/presentation/widgets/switch_language.dart';
 import '../cubit/product_state.dart';
 import '../widgets/product_card.dart';

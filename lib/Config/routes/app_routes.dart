@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_task/Config/routes/onboarding_screen.dart';
-import 'package:store_task/Features/products/presentation/cubit/product_cubit';
+import 'package:store_task/Features/products/presentation/cubit/product_cubit.dart';
 import 'package:store_task/Features/products/presentation/screens/home_screen.dart';
 import 'package:store_task/injection_container.dart' as di;
 import 'package:store_task/Config/routes/routes.dart';
