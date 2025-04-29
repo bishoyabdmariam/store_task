@@ -7,7 +7,7 @@ import 'package:store_task/Features/products/data/data_sources/products_local_da
 import 'package:store_task/Features/products/data/data_sources/products_remote_data_source/products_remote_data_source.dart';
 import 'package:store_task/Features/products/domain/repository/products_repository.dart';
 import 'package:store_task/Features/products/domain/repository/products_repository_impl.dart';
-import 'package:store_task/Features/products/presentation/cubit/product_cubit';
+import 'package:store_task/Features/products/presentation/cubit/product_cubit.dart';
 import 'package:store_task/Features/settings/data/data_sources/lang_local_data_sources.dart';
 import 'package:store_task/Features/settings/data/repositories/lang_repositories_imp.dart';
 import 'package:store_task/Features/settings/domain/repositories/lang_repositories.dart';
