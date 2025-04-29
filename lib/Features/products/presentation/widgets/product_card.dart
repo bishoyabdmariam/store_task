@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_task/Features/products/data/model/product.dart';
 
 class ProductCard extends StatelessWidget {
@@ -30,14 +31,14 @@ class ProductCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(
                     product.image,
-                    height: 100,
+                    height: 100.h,
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) =>
                         const Icon(Icons.broken_image, size: 40),
                   ),
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               Text(
                 product.title,
                 maxLines: 2,
@@ -54,7 +55,7 @@ class ProductCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              const SizedBox(height: 6),
+              SizedBox(height: 6.h),
               Row(
                 children: [
                   Icon(Icons.star, color: Colors.amber.shade600, size: 16),

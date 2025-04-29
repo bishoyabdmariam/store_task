@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_task/Core/extensions/extensions.dart';
 import 'package:store_task/Features/products/data/model/product.dart';
 
@@ -24,21 +25,21 @@ class ProductDetailScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: Image.network(
                   product.image,
-                  height: 280,
+                  height: 280.h,
                   fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) =>
                       const Icon(Icons.broken_image, size: 100),
                 ),
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
             Text(
               product.title,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             Text(
               '\$${product.price.toStringAsFixed(2)}',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(

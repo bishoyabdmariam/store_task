@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_task/Core/extensions/extensions.dart';
 import 'package:store_task/Features/products/data/model/product.dart';
 import 'package:store_task/Features/products/presentation/cubit/product_cubit';
-import '../../../settings/presentation/cubit/locale/locale_cubit.dart';
 import '../../../settings/presentation/widgets/switch_language.dart';
 import '../cubit/product_state.dart';
 import '../widgets/product_card.dart';
 import '../widgets/search_field.dart';
 import 'product_detail_screen.dart';
-
-import 'package:store_task/injection_container.dart' as di;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -45,12 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: 8.w),
               child: SearchField(
                 onChanged: context.read<ProductCubit>().searchProducts,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Expanded(
               child: BlocBuilder<ProductCubit, ProductState>(
                 builder: (context, state) {
