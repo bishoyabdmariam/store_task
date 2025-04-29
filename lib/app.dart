@@ -27,9 +27,6 @@ class MyApp extends StatelessWidget {
             },
             builder: (context, localState) {
               if (localState is ChangeLocaleState) {
-                print(localState.locale);
-                print("localState.locale");
-
                 return MaterialApp(
                   locale: localState.locale,
                   debugShowCheckedModeBanner: false,
@@ -49,7 +46,12 @@ class MyApp extends StatelessWidget {
                       AppLocalizationsSetup.localizationsDelegates,
                 );
               }
-              return Container();
+              return Container(
+                color: Colors.white,
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
             },
           ),
         );

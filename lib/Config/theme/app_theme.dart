@@ -7,7 +7,6 @@ class AppThemeStyle {
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.white,
       foregroundColor: Colors.black,
-      centerTitle: true,
     ),
     colorScheme: const ColorScheme(
       brightness: Brightness.light,

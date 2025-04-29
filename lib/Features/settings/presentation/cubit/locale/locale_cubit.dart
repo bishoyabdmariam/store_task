@@ -30,11 +30,11 @@ class LocaleCubit extends Cubit<LocaleState> {
     emit(ChangeLocaleState(locale: Locale(langCode)));
   }
 
-  void toEnglish() {
-    changeLang(AppStrings.englishCode);
+  toEnglish() async {
+    await changeLang(AppStrings.englishCode);
   }
 
-  void toArabic() {
-    changeLang(AppStrings.arabicCode);
+  toArabic() async {
+    await changeLang(AppStrings.arabicCode);
   }
 }

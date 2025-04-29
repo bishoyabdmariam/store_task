@@ -12,6 +12,7 @@ class ProductDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Product Details'.translate(context)),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -19,20 +20,25 @@ class ProductDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Image.network(
-                product.image,
-                height: 300,
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) =>
-                    const Icon(Icons.error, size: 100),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network(
+                  product.image,
+                  height: 280,
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) =>
+                      const Icon(Icons.broken_image, size: 100),
+                ),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
             Text(
               product.title,
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             Text(
               '\$${product.price.toStringAsFixed(2)}',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -40,28 +46,37 @@ class ProductDetailScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             Row(
               children: [
-                Icon(Icons.star, color: Colors.amber),
+                const Icon(Icons.star, color: Colors.amber),
+                const SizedBox(width: 4),
                 Text(
-                    ' ${product.ratingRate ?? 0} (${product.ratingCount ?? 0} reviews)'),
+                  '${product.ratingRate ?? 0} (${product.ratingCount ?? 0} reviews)',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
             Text(
               '${"Category".translate(context)}: ${product.category}',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontStyle: FontStyle.italic,
+                    color: Colors.grey[600],
                   ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
             Text(
               '${"Description".translate(context)}:',
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
             const SizedBox(height: 8),
-            Text(product.description),
+            Text(
+              product.description,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ],
         ),
       ),

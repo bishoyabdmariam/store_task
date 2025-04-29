@@ -17,8 +17,8 @@ chooseWhereToStart() {
 
   if (isFirstTime != null && isFirstTime) {
     return MaterialPageRoute(
-        builder: (context) => BlocProvider(
-              create: (context) => di.sl<ProductCubit>(),
+        builder: (context) => BlocProvider.value(
+              value: di.sl<ProductCubit>(),
               child: HomeScreen(),
             ));
   } else {
@@ -41,9 +41,11 @@ class AppRoutes {
 
       case Routes.homeScreen:
         return MaterialPageRoute(
-            builder: (context) => BlocProvider(
-                create: (context) => di.sl<ProductCubit>(),
-                child: const HomeScreen()));
+          builder: (context) => BlocProvider.value(
+            value: di.sl<ProductCubit>(),
+            child: const HomeScreen(),
+          ),
+        );
 
       default:
         return null;
